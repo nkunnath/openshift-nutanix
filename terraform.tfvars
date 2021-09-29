@@ -1,0 +1,6 @@
+cluster_name = "MarioKart"
+subnet_name  = "OCP"
+user         = "admin"
+password     = "Nutanix/1234"
+endpoint     = "10.63.19.124"
+source_uri   = "https://s3.us-east-1.amazonaws.com/assisted-installer/discovery-image-d9c6ebc4-7a2e-44a6-9c68-844d424fed1d.iso?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA52ZYGBOVI2P2TOEQ%2F20210929%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210929T224748Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3Ddiscovery-image-d9c6ebc4-7a2e-44a6-9c68-844d424fed1d.iso&X-Amz-Signature=6d99cb9c1e0f727416e15681e9965d69b1f466b7022ae8b86bf38c45612f898c"
