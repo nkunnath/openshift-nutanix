@@ -1,14 +1,14 @@
 # OpenShift variables
-OPENSHIFT_VERSION = "4.8.9"                                                     # Edit as required
-NAME = "ntnx"                                                                   # Edit as required
-OCP_RELEASE_IMAGE = "quay.io/openshift-release-dev/ocp-release:4.8.9-x86_64".   # Edit as required
-DNS_DOMAIN = "openshift.local"                                                  # Edit as required
+OPENSHIFT_VERSION = "4.8.9"                                                     
+NAME = "ntnx"                                                                   
+OCP_RELEASE_IMAGE = "quay.io/openshift-release-dev/ocp-release:4.8.9-x86_64".   
+DNS_DOMAIN = "openshift.local"                                                  
 CLUSTER_NETWORK_CIDR =  "10.128.0.0/14"
 CLUSTER_NETWORK_HOST_PREFIX = 23
 SERVICE_NETWORK_CIDR = "172.30.0.0/16"
-HOST_NETWORKS = "10.63.16.0/22"                                                 # Edit as required
-API_VIP = "10.63.19.122"                                                        # Edit as required
-INGRESS_VIP = "10.63.19.123"                                                    # Edit as required
+HOST_NETWORKS = "10.63.16.0/22"                                                 
+API_VIP = "10.63.19.122"                                                        
+INGRESS_VIP = "10.63.19.123"                                                   
 
 
 # SSH ky of local host that can be used for troubleshooting during installation
@@ -20,6 +20,6 @@ PULL_SECRET = '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2Ut
 OFFLINE_ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJhZDUyMjdhMy1iY2ZkLTRjZjAtYTdiNi0zOTk4MzVhMDg1NjYifQ.eyJpYXQiOjE2MzI5NTY5NDksImp0aSI6Ijg0NDk4ODE0LWM2OTItNDM2Ny1iNmJlLWJjYjY2ZjllZTJmYyIsImlzcyI6Imh0dHBzOi8vc3NvLnJlZGhhdC5jb20vYXV0aC9yZWFsbXMvcmVkaGF0LWV4dGVybmFsIiwiYXVkIjoiaHR0cHM6Ly9zc28ucmVkaGF0LmNvbS9hdXRoL3JlYWxtcy9yZWRoYXQtZXh0ZXJuYWwiLCJzdWIiOiJmOjUyOGQ3NmZmLWY3MDgtNDNlZC04Y2Q1LWZlMTZmNGZlMGNlNjpua3VubmF0aCIsInR5cCI6Ik9mZmxpbmUiLCJhenAiOiJjbG91ZC1zZXJ2aWNlcyIsIm5vbmNlIjoiMzU5MjhhOTMtNzJmMi00OGFmLTgwNGYtYzAyMjhiMGRkYWUyIiwic2Vzc2lvbl9zdGF0ZSI6IjQ3ZWJkOWFkLTU1ZTUtNDQ4NC1hNTk2LTMyNjBiY2NhNzFkZiIsInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIn0.wJDKleK9jdYkFSHAUElxzvEZR9-dNtLyPqAa8IfGU6I"
 
 # Nutanix Prism Central variables
-PC_IP_ADDRESS = "10.63.19.124"                                                  # Edit as required
-PC_USERNAME = "admin"                                                           # Edit as required
-PC_PASSWORD = "Nutanix/1234"                                                    # Edit as required
+PC_IP_ADDRESS = "10.63.19.124"                                                  
+PC_USERNAME = "admin"                                                           
+PC_PASSWORD = "Nutanix/1234"                                                    
