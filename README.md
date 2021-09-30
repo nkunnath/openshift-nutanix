@@ -70,4 +70,4 @@ optional arguments:
 
 ```
 
-A demo workflow is shown in DEMO.md
+A demo workflow is shown in [DEMO.md](DEMO.md)
