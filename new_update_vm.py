@@ -6,11 +6,8 @@ from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-
-
 header = {"content-type": "application/json"}
 auth = HTTPBasicAuth(PC_USERNAME,PC_PASSWORD)
-
 
 
 def list_vms(ip_address):
@@ -103,7 +100,6 @@ def update_vm(vm_name):
         update_disks(vm_uuid)
     time.sleep(20)
     res = requests.get(url=url, auth=auth, headers=header, verify=False)
-    print("AFTER UPDATING DISKS, GET IT ----- {0}".format(res.json()))
     if res.json().get('spec').get('resources').get('boot_config').get('boot_device').get('disk_address').get('adapter_type') == "SCSI":
         print("{0} boot device is updated successfully". format(vm_name), end="\n")
         print("Powering ON {0}".format(vm_name), end="\n") 
