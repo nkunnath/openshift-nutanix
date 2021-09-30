@@ -174,7 +174,7 @@ def progress_func(cluster_uuid):
 
 
 def main():
-    parser = argparse.ArgumentParser(description='OpenShift installer on Nutanix', 
+    parser = argparse.ArgumentParser(description='OpenShift assisted installer on Nutanix', 
                                      usage='''
     There are 5 choices to run the script.
     python openshift-installer.py --list_of_ocp_clusters
