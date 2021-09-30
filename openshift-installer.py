@@ -6,9 +6,8 @@ import requests
 from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-import update_vm
 import new_update_vm
-from openshiftvar import *
+from variables import *
 
 
 def refresh_token():

@@ -1,7 +1,7 @@
 import json
 import time
 import requests
-from openshiftvar import *
+from variables import *
 from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -95,23 +95,20 @@ def update_vm(vm_name):
     url = "https://{0}:9440/api/nutanix/v3/vms/{1}".format(PC_IP_ADDRESS, vm_uuid)
     print("Powering OFF {0}".format(vm_name), end="\n")
     power_off_nodes(vm_uuid)
-    time.sleep(15)
+    time.sleep(20)
     res = requests.get(url=url, auth=auth, headers=header, verify=False)
     if res.json().get('spec').get('resources').get('power_state') == "OFF":
         print("{0} is powered off successfully". format(vm_name), end="\n")
         print("Updating the boot disk for {0}".format(vm_name), end="\n")
         update_disks(vm_uuid)
-    else:
-        print("VM {0} is not powered off yet".format(vm_name))
-    time.sleep(15)
+    time.sleep(20)
     res = requests.get(url=url, auth=auth, headers=header, verify=False)
+    print("AFTER UPDATING DISKS, GET IT ----- {0}".format(res.json()))
     if res.json().get('spec').get('resources').get('boot_config').get('boot_device').get('disk_address').get('adapter_type') == "SCSI":
         print("{0} boot device is updated successfully". format(vm_name), end="\n")
         print("Powering ON {0}".format(vm_name), end="\n") 
         power_on_nodes(vm_uuid)
-    else:
-        print("VM {0} boot device is not updated yet".format(vm_name))
-    time.sleep(15)
+    time.sleep(20)
     res = requests.get(url=url, auth=auth, headers=header, verify=False)
     if res.json().get('spec').get('resources').get('power_state') == "ON":
         print("{0} is powered on successfully". format(vm_name), end="\n")
