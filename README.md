@@ -71,3 +71,6 @@ optional arguments:
 ```
 
 A demo workflow is shown in [DEMO.md](DEMO.md)
+
+
+After the OpenShift installation is over, login to the console and install the [Nutanix CSI Operator](https://www.nutanix.dev/2021/09/29/fast-tracking-persistent-storage-in-openshift/).
