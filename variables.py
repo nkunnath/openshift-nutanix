@@ -1,7 +1,7 @@
 # OpenShift variables
 OPENSHIFT_VERSION = "4.8.9"                                                     
 NAME = "ntnx"                                                                   
-OCP_RELEASE_IMAGE = "quay.io/openshift-release-dev/ocp-release:4.8.9-x86_64".   
+OCP_RELEASE_IMAGE = "quay.io/openshift-release-dev/ocp-release:4.8.9-x86_64" 
 DNS_DOMAIN = "openshift.local"                                                  
 CLUSTER_NETWORK_CIDR =  "10.128.0.0/14"
 CLUSTER_NETWORK_HOST_PREFIX = 23
