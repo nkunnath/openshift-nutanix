@@ -53,7 +53,7 @@ usage:
     python openshift-installer.py --get_credentials <cluster_uuid>
     
 
-OpenShift installer on Nutanix
+OpenShift assisted installer on Nutanix
 
 optional arguments:
   -h, --help            show this help message and exit
