@@ -1,5 +1,6 @@
 This describes a demo workflow.
 
+Open variables.py and update the values as required.
 
 ```
 python3 openshift-installer.py --create_cluster_definition
