@@ -12,6 +12,9 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 header = {"content-type": "application/json"}
 auth = HTTPBasicAuth(PC_USERNAME,PC_PASSWORD)
 
+
+
+
 def make_request(ip_address):
     '''
     Function that return the response of the REST API call to list all the roles
