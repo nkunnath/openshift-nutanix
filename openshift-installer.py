@@ -2,7 +2,6 @@ import json
 import sys
 import time
 import argparse
-import getpass
 import requests
 from requests.auth import HTTPBasicAuth
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -10,8 +9,6 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 import update_vm
 import new_update_vm
 from openshiftvar import *
-
-
 
 
 def refresh_token():
@@ -41,25 +38,6 @@ def get_cluster():
     res = requests.get(url=url, headers=headers)
     return res
 
-
-
-
-
-"""
-API VIP AND INGRESS VIP are patched
-https://api.openshift.com/api/assisted-install/v1/clusters/d72951b4-a683-498f-a742-f46c6bc2aff1
-METHOD PATCH
-{"api_vip":"10.136.107.83",
-"ingress_vip":"10.136.107.84",
-"ssh_public_key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDkYEGnmZrr6HAWr5VASaa0gvIBgKU2t6JovquKUSOJVW4XBSmpjVLdMw41eXxYz9v1u9fJ8ftGTHPQlG5tCmDyp8HVubdueT6lgJUZRD/qzx8b+p2ouyYC+rIsu8f5DFRXqW9W8g1NN7iM2nt5LhWJQjUixJW2EABto1Ho2a6XzhuE/ucrP+nZkmLn1FCvPbO+Ee1Er9E1CU8YEqj4db6LEaB0vJ5Y2XLyeXWtwXAVJ+X08D65BLXm+rcsP1UU0u3zSuP6zb3yEv+zrbCNc4t9rKS7PeGqwDIVyoHWBi31HTbfzhKZofGhjorJWJnl1pMPXSrq2206CJ07wQxFZNh9DTM463XZJR59n2MjEZEfK0L7wlz0UpIk0xWzNlBJakudMVKOzfMWJe8c8+nPuSN/0zF6Ylitiov3hBLu6myuId99wxWY+gvKpyMZNeE7Eunyz47DXmw0BsNM9C+nivP8bMlzunETtQmeQ4iwf1K9hBEiUTFZQmJjNDk3WWHv8nE= nimal.kunnath@C02C76CRMD6R",
-"vip_dhcp_allocation":false,
-"network_type":"OpenShiftSDN",
-"user_managed_networking":false,
-"cluster_networks":[{"cidr":"10.128.0.0/14","host_prefix":23}],
-"service_networks":[{"cidr":"172.30.0.0/16"}]}
-
-api_vip cannot be set during cluster creation
-"""
 
 
 def create_cluster_definition():
@@ -116,8 +94,6 @@ def create_image(cluster_uuid):
     url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}/downloads/image".format(cluster_uuid)
     res = requests.post(url=url, data=json.dumps(data_list), headers=headers)
     return res
-
-
 
 
 
@@ -223,7 +199,6 @@ def main():
         print("Boot image created. Please copy it to the Terraform file and create the nodes.\n")
         print("The download URI is: \n{0}".format(image.get("image_info").get('download_url')))
 
-
     if args.list_of_ocp_clusters:
         cluster = get_cluster().json()
         print("The OpenShift clusters are: ")
@@ -244,7 +219,6 @@ def main():
         {1}	prometheus-k8s-openshift-monitoring.apps.ntnx.openshift.local
         {1}	alertmanager-main-openshift-monitoring.apps.ntnx.openshift.local
         """.format(API_VIP, INGRESS_VIP))
-
 
     if len(sys.argv) == 3:
         if args.get_cluster_status:
@@ -275,8 +249,6 @@ def main():
             #p.start()
             #p.join()
             
-
-
 if __name__ == "__main__":
     main()
 

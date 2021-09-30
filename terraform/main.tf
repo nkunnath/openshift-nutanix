@@ -34,7 +34,7 @@ resource "nutanix_image" "dcos" {
 }
 
 
-resource "nutanix_virtual_machine" "master1" {
+resource "nutanix_virtual_machine" "Master1" {
   name                 = "openshift-master1"
   cluster_uuid         = data.nutanix_cluster.cluster.id
   num_vcpus_per_socket = "8"

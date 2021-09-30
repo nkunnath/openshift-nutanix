@@ -1,6 +1,5 @@
 import json
 import time
-import getpass
 import requests
 from openshiftvar import *
 from requests.auth import HTTPBasicAuth
@@ -37,8 +36,6 @@ def get_node_uuid(vm_name):
         if vm_item.get('spec').get('name') == vm_name:
             vm_uuid = vm_item.get('metadata').get('uuid')
     return vm_uuid
-
-
 
 
 
