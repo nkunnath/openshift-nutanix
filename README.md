@@ -9,9 +9,9 @@
 
 
 1. Nutanix
-* AOS: 5.19.1 or later
+* AOS: 5.20 or later
 * AHV: 20201105.1045 or later
-* Prism Central: 2020.11.0.1 or later
+* Prism Central: pc.2021.8 or later
 * VLAN network with AHV IPAM configured
 
 
