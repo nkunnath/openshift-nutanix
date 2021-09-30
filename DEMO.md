@@ -3,7 +3,8 @@ This describes a demo workflow.
 
 ```
 python3 openshift-installer.py --create_cluster_definition
-
+```
+```
 A new OpenShift cluster spec is created with name ntnx and ID b4579228-3b86-4e6f-94d7-1b1663ef62cb
 Creating the boot image
 Boot image created. Please copy it to the Terraform file and create the nodes.
@@ -20,7 +21,8 @@ Now apply the Terraform config. This will upload the discovery ISO boot image an
 cd terraform 
 terraform init
 terraform apply
-
+.
+.
 Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
 ```
 
@@ -33,8 +35,8 @@ Once all the network validations are done and hosts are ready to install, it sho
 
 ```
 watch -n 5 python3 openshift-installer.py --get_cluster_status b4579228-3b86-4e6f-94d7-1b1663ef62cb 
-
-
+```
+```
 Cluster status: Cluster is not ready for install
 
 Cluster installation progress details: {}
@@ -93,10 +95,128 @@ Host installation progress details: {
 
 ```
 
-Initiate cluster creation.
+Initiate cluster creation. This will display the progress on the terminal.
 
 ```
 python3 openshift-installer.py --install_cluster b4579228-3b86-4e6f-94d7-1b1663ef62cb
 ```
+```
+Cluster status: Preparing cluster for installation
 
+Cluster installation progress details: {}
 
+The stages during installation are as follows:
+            "Starting installation",
+            "Installing",
+            "Writing image to disk",
+            "Rebooting",
+            "Configuring",
+            "Joined",
+            "Done"
+            
+openshift-worker1: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+
+openshift-master2: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+
+openshift-worker3: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+
+openshift-worker2: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+
+openshift-master1: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+
+openshift-master3: Host is preparing for installation
+Host installation progress details: {
+    "current_stage": "",
+    "stage_started_at": "0001-01-01T00:00:00.000Z",
+    "stage_updated_at": "0001-01-01T00:00:00.000Z"
+}
+.
+.
+.
+.
+.
+.
+.
+.
+############### Checking progress after 10 seconds ###############
+
+Cluster status: Cluster is installed
+
+Cluster installation progress details: {
+    "finalizing_stage_percentage": 100,
+    "installing_stage_percentage": 100,
+    "preparing_for_installation_stage_percentage": 100,
+    "total_percentage": 100
+}
+
+The stages during installation are as follows:
+            "Starting installation",
+            "Installing",
+            "Writing image to disk",
+            "Rebooting",
+            "Configuring",
+            "Joined",
+            "Done"
+            
+openshift-worker3: Done
+openshift-worker2: Done
+openshift-master3: Done
+openshift-master1: Done
+openshift-master2: Done
+openshift-worker1: Done
+############### Checking progress after 10 seconds ###############
+
+Cluster is installed. Login to the console.
+Hint: Run python3 openshift-installer.py --get_credentials b4579228-3b86-4e6f-94d7-1b1663ef62cb
+```
+
+You can get the credentials to the cluster and login to the console.
+
+```
+python3 openshift-installer.py --get_credentials b4579228-3b86-4e6f-94d7-1b1663ef62cb
+```
+
+```
+{
+    "console_url": "https://console-openshift-console.apps.ntnx.openshift.local",
+    "password": "PpX56-2TSCB-x3vUB-8AjdJ",
+    "username": "kubeadmin"
+}
+
+        Add the following to your local machine's /etc/hosts file.
+
+        10.63.19.122	api.ntnx.openshift.local
+        10.63.19.123	oauth-openshift.apps.ntnx.openshift.local
+        10.63.19.123	console-openshift-console.apps.ntnx.openshift.local
+        10.63.19.123	grafana-openshift-monitoring.apps.ntnx.openshift.local
+        10.63.19.123	thanos-querier-openshift-monitoring.apps.ntnx.openshift.local
+        10.63.19.123	prometheus-k8s-openshift-monitoring.apps.ntnx.openshift.local
+        10.63.19.123	alertmanager-main-openshift-monitoring.apps.ntnx.openshift.local
+        
+
+```
