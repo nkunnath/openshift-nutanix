@@ -158,11 +158,6 @@ def progress_func(cluster_uuid):
                 continue
             print("Host installation progress details: {0}".format(json.dumps(item.get("progress"), indent=4)), end="\n\n")
 
-            if "Expected the host to boot from disk, but it booted the installation image" in item.get("status_info"):
-                new_update_vm.update_vm(item.get("requested_hostname"))
-                print("Successfully updated {0}".format(item.get("requested_hostname")))
-                time.sleep(15)
-
         print("############### Checking progress after 10 seconds ###############\n")
         time.sleep(10)
         if cluster_info.get("status_info") == "Cluster is installed":
@@ -236,17 +231,12 @@ def main():
             print("Host status is:", end="\n\n")
             for item in host_info:
                 print("{0}: {1}".format(item.get("requested_hostname"), item.get("status_info")))
-                #print(item.get("requested_hostname"))
                 print("Host installation progress details: {0}".format(json.dumps(item.get("progress"), indent=4)), end="\n\n")
-                #print(json.dumps(item.get("progress"), indent=4), end="\n\n")
-                #print(json.dumps(item, indent=4))
         elif args.install_cluster:
             patch_cluster(args.install_cluster)
             create_cluster(args.install_cluster)
             progress_func(args.install_cluster)
-            #p = Process(target=func, args=("args.install_cluster"))
-            #p.start()
-            #p.join()
+
             
 if __name__ == "__main__":
     main()
