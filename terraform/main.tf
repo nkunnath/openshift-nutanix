@@ -40,6 +40,7 @@ resource "nutanix_virtual_machine" "Master1" {
   num_vcpus_per_socket = "8"
   num_sockets          = "1"
   memory_size_mib      = "20480"
+  boot_device_order_list = ["DISK", "CDROM"]
 
   disk_list {
     data_source_reference = {
@@ -71,10 +72,7 @@ resource "nutanix_virtual_machine" "Master2" {
   num_vcpus_per_socket = "8"
   num_sockets          = "1"
   memory_size_mib      = "20480"
-#  boot_device_disk_address =  {
-#        "adapter_type" = "SCSI"
-#        "device_index" = "1"
-#      }
+  boot_device_order_list = ["DISK", "CDROM"]
 
   disk_list {
     data_source_reference = {
@@ -104,8 +102,8 @@ resource "nutanix_virtual_machine" "Master3" {
   num_vcpus_per_socket = "8"
   num_sockets          = "1"
   memory_size_mib      = "20480"
+  boot_device_order_list = ["DISK", "CDROM"]
   
-
   disk_list {
     data_source_reference = {
       kind = "image"
@@ -134,6 +132,7 @@ resource "nutanix_virtual_machine" "Worker1" {
   num_vcpus_per_socket = "4"
   num_sockets          = "1"
   memory_size_mib      = "10240"
+  boot_device_order_list = ["DISK", "CDROM"]
 
   disk_list {
     data_source_reference = {
@@ -164,6 +163,7 @@ resource "nutanix_virtual_machine" "Worker2" {
   num_vcpus_per_socket = "4"
   num_sockets          = "1"
   memory_size_mib      = "10240"
+  boot_device_order_list = ["DISK", "CDROM"]
 
   disk_list {
     data_source_reference = {
@@ -194,6 +194,7 @@ resource "nutanix_virtual_machine" "Worker3" {
   num_vcpus_per_socket = "4"
   num_sockets          = "1"
   memory_size_mib      = "10240"
+  boot_device_order_list = ["DISK", "CDROM"]
 
   disk_list {
     data_source_reference = {
