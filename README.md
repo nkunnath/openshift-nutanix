@@ -2,7 +2,7 @@
 
 
 ## Introduction
- OpenShift assisted installer method on Nutanix from CLI. This leverages REST API's from [OpenShift](https://generator.swagger.io/?url=https://raw.githubusercontent.com/openshift/assisted-service/master/swagger.yaml) and [Nutanix Prism Central](https://www.nutanix.dev/reference/prism_central/v3/).
+ OpenShift assisted installer method on Nutanix from CLI. This leverages REST API's from [OpenShift](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/) and [Nutanix Prism Central](https://www.nutanix.dev/reference/prism_central/v3/).
 
 
 ## Pre-requisites
