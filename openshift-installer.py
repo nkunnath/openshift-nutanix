@@ -32,7 +32,7 @@ def get_cluster():
     '''
     Retrieves the list of OpenShift clusters.
     '''
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters"
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters"
     res = requests.get(url=url, headers=headers)
     return res
 
@@ -46,7 +46,6 @@ def create_cluster_definition():
         "kind": "Cluster",
         "name": NAME,
         "openshift_version": OPENSHIFT_VERSION,
-        "ocp_release_image": OCP_RELEASE_IMAGE,
         "base_dns_domain": DNS_DOMAIN,
         "hyperthreading": "all",
         "cluster_network_cidr": CLUSTER_NETWORK_CIDR,
@@ -58,7 +57,7 @@ def create_cluster_definition():
         "ssh_public_key": CLUSTER_SSH_KEY,
         "pull_secret": PULL_SECRET
     }
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters"
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters"
     res = requests.post(url=url, data=json.dumps(data_list), headers=headers)
     return res
 
@@ -73,7 +72,7 @@ def patch_cluster(cluster_uuid):
         "ingress_vip": INGRESS_VIP,
         'vip_dhcp_allocation': False
     }
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}".format(cluster_uuid)
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters/{0}".format(cluster_uuid)
     res = requests.patch(url=url, data=json.dumps(data_list), headers=headers)
     return res
 
@@ -85,11 +84,14 @@ def create_image(cluster_uuid):
     Creates a new OpenShift per-cluster Discovery ISO.
     '''
     data_list = {
+        "name": cluster_name, 
+        "cluster_id": cluster_uuid,
+        "openshift_version": OPENSHIFT_VERSION,
         "image_type": "full-iso",
         "pull_secret": PULL_SECRET,
         "ssh_public_key": CLUSTER_SSH_KEY
     }
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}/downloads/image".format(cluster_uuid)
+    url = "https://api.openshift.com/api/assisted-install/v2/infra-envs"
     res = requests.post(url=url, data=json.dumps(data_list), headers=headers)
     return res
 
@@ -100,7 +102,7 @@ def create_cluster(cluster_uuid):
     Installs the OpenShift cluster.
     '''
     data_list = {}
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}/actions/install".format(cluster_uuid)
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters/{0}/actions/install".format(cluster_uuid)
     res = requests.post(url=url, data=json.dumps(data_list), headers=headers)
     return res
 
@@ -110,7 +112,7 @@ def get_credentials(cluster_uuid):
     '''
     Get the cluster admin credentials.
     '''
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}/credentials".format(cluster_uuid)
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters/{0}/credentials".format(cluster_uuid)
     res = requests.get(url=url, headers=headers)
     return res
 
@@ -122,7 +124,7 @@ def get_cluster_details(cluster_uuid):
     '''
     TOKEN_NEW = refresh_token().json().get("access_token")
     headers_new = {"Authorization": "Bearer " + TOKEN_NEW, "content-type": "application/json"}
-    url = "https://api.openshift.com/api/assisted-install/v1/clusters/{0}".format(cluster_uuid)
+    url = "https://api.openshift.com/api/assisted-install/v2/clusters/{0}".format(cluster_uuid)
     res = requests.get(url=url, headers=headers_new, verify=False)
     cluster_info = res.json()
     host_info = []
@@ -188,9 +190,9 @@ def main():
         cluster = create_cluster_definition().json()
         print("A new OpenShift cluster spec is created with name {0} and ID {1}".format(cluster.get("name"), cluster.get("id")))
         print("Creating the boot image")
-        image = create_image(cluster.get("id")).json()
+        image = create_image(cluster.get("name"),cluster.get("id")).json()
         print("Boot image created. Please copy it to the Terraform file and create the nodes.\n")
-        print("The download URI is: \n{0}".format(image.get("image_info").get('download_url')))
+        print("The download URI is: \n{0}".format(image.get('download_url')))
 
     if args.list_of_ocp_clusters:
         cluster = get_cluster().json()
@@ -204,14 +206,14 @@ def main():
         print("""
         Add the following to your local machine's /etc/hosts file.
 
-        {0}	api.ntnx.openshift.local
-        {1}	oauth-openshift.apps.ntnx.openshift.local
-        {1}	console-openshift-console.apps.ntnx.openshift.local
-        {1}	grafana-openshift-monitoring.apps.ntnx.openshift.local
-        {1}	thanos-querier-openshift-monitoring.apps.ntnx.openshift.local
-        {1}	prometheus-k8s-openshift-monitoring.apps.ntnx.openshift.local
-        {1}	alertmanager-main-openshift-monitoring.apps.ntnx.openshift.local
-        """.format(API_VIP, INGRESS_VIP))
+        {0}	api.ntnx.{2}.{3}
+        {1}	oauth-openshift.apps.{2}.{3}
+        {1}	console-openshift-console.apps.{2}.{3}
+        {1}	grafana-openshift-monitoring.apps.{2}.{3}
+        {1}	thanos-querier-openshift-monitoring.apps.{2}.{3}
+        {1}	prometheus-k8s-openshift-monitoring.apps.{2}.{3}
+        {1}	alertmanager-main-openshift-monitoring.apps.{2}.{3}
+        """.format(API_VIP, INGRESS_VIP, NAME, DNS_DOMAIN))
 
     if len(sys.argv) == 3:
         if args.get_cluster_status:
