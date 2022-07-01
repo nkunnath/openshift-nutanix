@@ -79,7 +79,7 @@ def patch_cluster(cluster_uuid):
 
 
 
-def create_image(cluster_uuid):
+def create_image(cluster_name, cluster_uuid):
     '''
     Creates a new OpenShift per-cluster Discovery ISO.
     '''
