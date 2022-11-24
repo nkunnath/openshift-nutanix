@@ -1,6 +1,6 @@
-cluster_name = "MarioKart"
-subnet_name  = "OCP"
+cluster_name = "PHX-POC186"  # Prism Element cluster name
+subnet_name  = "Secondary"   # Network name used for the nodes
 user         = "admin"
-password     = "Nutanix/1234"
-endpoint     = "10.63.19.124"
-source_uri   = "https://s3.us-east-1.amazonaws.com/assisted-installer/discovery-image-0f81259f-527b-434c-8691-3125ca36b435.iso?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA52ZYGBOVI2P2TOEQ%2F20210930%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210930T123014Z&X-Amz-Expires=14400&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3Bfilename%3Ddiscovery-image-0f81259f-527b-434c-8691-3125ca36b435.iso&X-Amz-Signature=1944a7ba7bab03b8860eb9c9dc45cc836a62095e5534f61e3db3fabaf15bdf7b"
+password     = "xxx"
+endpoint     = "10.38.186.39" # Prism Central endpoint
+source_uri   = "https://api.openshift.com/api/assisted-images/images/c126ad45-e6e8-49c0-b471-001bfae1678b?arch=x86_64&image_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjkyOTUxOTYsInN1YiI6ImMxMjZhZDQ1LWU2ZTgtNDljMC1iNDcxLTAwMWJmYWUxNjc4YiJ9.6m4Dg24DU8yG2i9agAOF59kcjdRoA4goYWchegHWo_Q&type=full-iso&version=4.12"

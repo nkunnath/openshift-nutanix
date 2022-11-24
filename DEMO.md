@@ -32,6 +32,12 @@ Monitor the creation and get the current status of the hosts with the `--get_clu
 The hosts should be able to resolve api.openshift.com for the agent service to run.
 
 
+Kick off the cluster creation.
+
+```
+python3 openshift-installer.py --install_cluster b4579228-3b86-4e6f-94d7-1b1663ef62cb
+```
+
 Once all the network validations are done and hosts are ready to install, it should look as below.
 
 ```

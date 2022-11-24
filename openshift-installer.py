@@ -70,7 +70,8 @@ def patch_cluster(cluster_uuid):
     data_list = {
         "api_vip": API_VIP,
         "ingress_vip": INGRESS_VIP,
-        'vip_dhcp_allocation': False
+        'vip_dhcp_allocation': False,
+        "platform": {"type": "nutanix"}
     }
     url = "https://api.openshift.com/api/assisted-install/v2/clusters/{0}".format(cluster_uuid)
     res = requests.patch(url=url, data=json.dumps(data_list), headers=headers)
