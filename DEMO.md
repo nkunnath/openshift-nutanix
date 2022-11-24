@@ -26,17 +26,19 @@ terraform apply
 .
 Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
 ```
-
 <br/><br/>
-Monitor the creation and get the current status of the hosts with the `--get_cluster_status` argument. Once the hosts boot up, the agent running on each host contacts the [Assisted Service](https://github.com/openshift/assisted-service) via REST API and performs discovery.
-The hosts should be able to resolve api.openshift.com for the agent service to run.
-
 
 Kick off the cluster creation.
 
 ```
 python3 openshift-installer.py --install_cluster b4579228-3b86-4e6f-94d7-1b1663ef62cb
 ```
+<br/><br/>
+Monitor the creation and get the current status of the hosts with the `--get_cluster_status` argument. Once the hosts boot up, the agent running on each host contacts the [Assisted Service](https://github.com/openshift/assisted-service) via REST API and performs discovery.
+The hosts should be able to resolve api.openshift.com for the agent service to run.
+
+
+
 
 Once all the network validations are done and hosts are ready to install, it should look as below.
 
